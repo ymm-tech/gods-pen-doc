@@ -1,0 +1,25 @@
+{
+  "name": "maliang-doc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "vuepress": "^0.7.1"
+  },
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
+    "docs:pack": "cd docs/.vuepress/ && tar -zcvf doc.tar.gz dist/* && mv doc.tar.gz ../.."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ymm-tech/gods-pen-doc.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
