@@ -10,7 +10,7 @@
 npm install gods-pen-cli -g
 ```
 
-![](../assets/img/maliang-cli.png)
+![](../assets/img/maliang-cli.jpg)
 
 ## 设置`registry`
 
@@ -260,7 +260,7 @@ gods-pen-publish
 # gods-pen-publish --skip-build
 ```
 
-![](../assets/img/maliang-publish.png)
+![](../assets/img/maliang-publish.jpg)
 
 如果组件已成功构建过，也可以添加参数 `--skip-build` 跳过构建步骤
 
