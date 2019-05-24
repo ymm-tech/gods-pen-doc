@@ -199,7 +199,7 @@ return node
 ```js
 
 return {
-  mounted: {
+  mounted () {
     var lib = this.$options.$lib
     console.log(lib)
   }
@@ -207,8 +207,12 @@ return {
 
 ```
 
-todo
-![](../assets/img/truck-lib.png)
+![](../assets/img/lib.png)
+
+
+- `ESlog` 提供了 log 上报能力。`ESlog.pageview` 记录页面访问（注意，无需主动调用，每个页面都会默认开启了页面访问日志上报）；`ESlog.track` 自定义事件的日志上报。 详细api可查看[代码](https://github.com/ymm-tech/gods-pen-cli/blob/master/tpl/preview/lib/ESlog.js)。
+- `Server` 提供了异步请求能力。`Server.fetch` 使用方法同原生 [`fetch`](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API)。
+- `Util` 主要包含 `Util.loadJs` 异步加载js的能力。
 
 ### `DataHub` 数据总线
 
@@ -238,7 +242,7 @@ return {
 
 形如 `${a.b.c}` 从DataHub取值；形如`${$scope.x}`从上级组件传入该组件的数据中取值，如列表容器传给列表项的数据
 
-模板字符串甚至还支持过滤器，如 `${a.b.c | datatime}`。码良默认提供了一些过滤器，见[过滤器](#todo)。也可通过脚本编写自定义过滤器。
+模板字符串甚至还支持过滤器，如 `${a.b.c | datatime}`。码良默认提供了一些过滤器，见[过滤器](https://github.com/ymm-tech/gods-pen-cli/blob/master/tpl/preview/lib/vue/filters.js)。也可通过脚本编写自定义过滤器。
 
 编译过程内部调用的方法为 `vm.scopeGet`。
 

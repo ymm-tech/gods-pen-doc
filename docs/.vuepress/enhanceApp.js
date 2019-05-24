@@ -53,7 +53,6 @@ function integrateGitalk(router) {
         admin: 'mingyuanwei'
       }
     } else {
-      // todo 评论
       config = {
         clientID: '31521355c83e11cf9d11',
         clientSecret: 'a3d2cc604085e8f12bbb83f5f3320934d83b61c8',
@@ -67,7 +66,7 @@ function integrateGitalk(router) {
       clientSecret: config.clientSecret, // come from github development
       repo: config.repo,
       owner: config.owner,
-      admin: [config.owner],
+      admin: [config.admin],
       id: fullPath,
       distractionFreeMode: false,
       language: 'zh-CN',

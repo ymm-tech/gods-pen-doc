@@ -21,10 +21,10 @@
 
 ### 获取代码
 
-[项目地址](#todo)，该项目提供了 docker-compose 配置。
+[项目地址](https://github.com/ymm-tech/gods-pen-docker)，该项目提供了 docker-compose 配置。
 
 ```bash
-git clone todo
+git clone https://github.com/ymm-tech/gods-pen-docker.git
 ```
 或直接下载并解压备用。
 

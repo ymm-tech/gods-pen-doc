@@ -57,11 +57,11 @@ npm run dev
 
 若之前选择了“创建属性配置组件”，`/editor/index.vue` 即为属性配置组件。属性配置组件用于在编辑器中自定义组件配置面板。
 
-码良组件本身与普通 vue 组件无异，只是在普通 vue 组件的基础上，我们添加了一些约定字段，使组件能被码良编辑器识别、配置。这些约定字段其实已经在[脚本开发](develop/script.html)部分介绍过了，见[自定义属性](develop/script.html#添加自定义属性)、[自定义方法](develop/script.html#添加自定义方法)
+码良组件本身与普通 vue 组件无异，只是在普通 vue 组件的基础上，我们添加了一些约定字段，使组件能被码良编辑器识别、配置。这些约定字段其实已经在[脚本开发](./script.html)部分介绍过了，见[自定义属性](./script.html#添加自定义属性)、[自定义方法](./script.html#添加自定义方法)
 
-除此以外，我们还内置了一些工具函数/服务。
+除此以外，我们还内置了一些[工具函数/服务](./script.html#组件实例的通用方法和属性)。
 
-如[过滤器](#todo)、[弹框服务](#todo)、[模板字符串编译](develop/script.html#模板字符串编译)`vm.scopeGet`
+如[过滤器](https://github.com/ymm-tech/gods-pen-cli/blob/master/tpl/preview/lib/vue/filters.js)、[Notice 弹框服务](https://github.com/ymm-tech/gods-pen-cli/blob/master/tpl/preview/app.vue.ejs#L36-L94)、[模板字符串编译](./script.html#模板字符串编译)
 
 对于外部资源的引入，目前有两种方案，一种是通过 `npm` 包引入如
 
