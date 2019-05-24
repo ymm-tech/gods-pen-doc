@@ -1,24 +1,24 @@
 //中心内容块
 export const contentPart = {
   1: {
-    name: '项目权限清晰',
-    description: '按团队，项目的维度管理项目页面，方便团队协作。',
-    img: require('../../assets/img/1.png')
+    name: '页面管理方便',
+    description: '按团队，项目的维度管理项目页面，方便团队协作。每个项目都可以有自己的权限，也非常适合多人管理一组项目',
+    img: require('../../assets/images/undraw_team.svg')
   },
   2: {
     name: '编辑操作高效',
     description: '拖拽挪移，随心所欲。灵活组合，提高提高效率，保存模板，快速创建。',
-    img: require('../../assets/img/2.png')
+    img: require('../../assets/images/undraw_i_can_fly.svg')
   },
   3: {
     name: '组件接入简单',
     description: '提供方便的脚手架创建组件，你可以把一个小功能，一个页面，一个项目做成一个组件，暴露参数给其他同学在编辑器里面填写',
-    img: require('../../assets/img/3.png')
+    img: require('../../assets/images/undraw_note_list.svg')
   },
   4: {
     name: '灵活丰富的扩展',
     description: '可以对组件添加各种脚本，扩展该组件的功能，并友好的提供给使用者配置参数',
-    img: require('../../assets/img/4.png')
+    img: require('../../assets/images/undraw_product_teardown.svg')
   },
 }
 
