@@ -2,12 +2,12 @@
 
 官方已经提供了一些[基本组件](../cookbook/component.html#基础组件)，同时，码良也提供了第三方组件的接入能力
 
-## `maliang`
+## `gods-pen`
 
-`maliang` 是基于 `nodejs` 的命令行工具，提供了覆盖组件开发全流程的工具
+`gods-pen` 是基于 `nodejs` 的命令行工具，提供了覆盖组件开发全流程的工具
 
 ```shell
-npm install maliang-cli -g
+npm install gods-pen-cli -g
 ```
 
 ![](../assets/img/maliang-cli.png)
@@ -18,21 +18,21 @@ npm install maliang-cli -g
 
 ```shell
 # 设置为官方组件仓库 godspen.ymm56.com
-maliang config registry http://godspen.ymm56.com
+gods-pen-config registry http://godspen.ymm56.com
 ```
 ## 设置`token`
 
 `token` 即用户凭据，可以在码良后台（左侧菜单-用户设置-access）取得，用来确认开发者身份。如未提供 `token` 则组件不能发布成功。
 
 ```shell
-maliang config token DEcTjQRFbiYitFydhC2m5kd8JHieQrsztrbiPaz5DbHk68AWbmMBe7ShXw2ncwp5
+gods-pen-config token DEcTjQRFbiYitFydhC2m5kd8JHieQrsztrbiPaz5DbHk68AWbmMBe7ShXw2ncwp5
 ```
 此设置非必须，也可在发布组件时于命令行交互中填写。
 
 ## 创建组件
 
 ```shell
-maliang create <your-component-name> # maliang create test-com
+gods-pen-create <your-component-name> # gods-pen-create test-com
 ```
 
 ![](../assets/img/maliang-create.png)
@@ -228,7 +228,7 @@ export default {
 
 ```shell
 # cd <component-dir>
-maliang build
+gods-pen-build
 ```
 
 ![](../assets/img/maliang-build.png)
@@ -255,9 +255,9 @@ package.json内 `style` 字段定义了组件外层包裹节点的默认样式�
 
 ```shell
 # cd <component-dir>
-maliang publish
+gods-pen-publish
 # 如果已经成功构建过，可跳过构建过程
-# maliang publish --skip-build
+# gods-pen-publish --skip-build
 ```
 
 ![](../assets/img/maliang-publish.png)
