@@ -50,7 +50,7 @@ hr {
  * 2. Correct the odd `em` font sizing in all browsers.
  */
 pre {
-  font-family: monospace, monospace;
+/*   font-family: monospace, monospace; */
   /* 1 */
   font-size: 1em;
   /* 2 */
@@ -93,7 +93,7 @@ strong {
 code,
 kbd,
 samp {
-  font-family: monospace, monospace;
+/*   font-family: monospace, monospace; */
   /* 1 */
   font-size: 1em;
   /* 2 */
@@ -451,7 +451,7 @@ h6 {
 }
 
 pre {
-  font-family: monospace, monospace;
+/*   font-family: monospace, monospace; */
   font-size: 0.85rem;
   color: #111;
   width: min-content;
@@ -1409,7 +1409,7 @@ select::-ms-expand {
   text-align: left;
 }
 
-.page {
+.custom-layout .page {
   padding: 24pt 0;
 }
 
