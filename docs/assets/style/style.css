@@ -466,10 +466,10 @@ pre {
 }
 
 a {
-  outline: 0;
+/*   outline: 0;
   text-decoration: none;
   transition: 0.7s;
-  color: inherit;
+  color: inherit; */
 }
 
 .link {
