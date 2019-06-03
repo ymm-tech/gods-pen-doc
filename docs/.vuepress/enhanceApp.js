@@ -75,10 +75,18 @@ function integrateGitalk(router) {
   }
 }
 
+function integrateBaidutongji () {
+  var hm = document.createElement("script")
+  hm.src = "https://hm.baidu.com/hm.js?84ec065ed53bdba33766fd8de56ca030"
+  hm.setAttribute('defer', true)
+  document.body.appendChild(hm)
+}
+
 export default ({Vue, options, router}) => {
   if (typeof document == 'undefined') return
   try {
-    document && integrateGitalk(router)
+    integrateGitalk(router)
+    integrateBaidutongji()
   } catch (e) {
     console.error(e.message)
   }
