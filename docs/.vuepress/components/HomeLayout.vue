@@ -41,6 +41,12 @@
                 </svg>
                 GITHUB
               </a>
+              <a
+                href="https://gitee.com/ymm-tech/gods-pen"
+                class="button hero__button"
+              >
+                GITEE
+              </a>
             </div>
           </div>
         </div>
@@ -138,17 +144,23 @@
             class="footer__textLogo"
           >码良</a>
           <div class="footer__data">
-            <div class="footer__data__item" v-for="(value,key) in footerPart">
-              <div class="footer__row" v-for="(item,key) in value.list">
+            <div
+              class="footer__data__item"
+              v-for="(value,key) in footerPart"
+            >
+              <div
+                class="footer__row"
+                v-for="(item,key) in value.list"
+              >
                 <a
                   :href="item.link"
                   target="_blank"
                   class="footer__link"
                 >{{item.name}}</a>
               </div>
-             
+
             </div>
-            
+
           </div>
         </div>
       </div>
