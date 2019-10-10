@@ -39,7 +39,7 @@ module.exports = {
       },
       {
         text: '开始使用',
-        link: 'http://godspen.ymm56.com/admin/'
+        link: 'https://godspen.ymm56.com/admin/'
       },
     ],
     sidebar: {

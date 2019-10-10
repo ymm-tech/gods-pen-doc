@@ -15,7 +15,7 @@
               <h1 class="hero__title">码良</h1>
               <p class="hero__text">高扩展的在线网页制作平台</p>
               <a
-                href="http://godspen.ymm56.com/admin/#/home"
+                href="https://godspen.ymm56.com/admin/#/home"
                 class="button button__accent"
               >开始使用</a>
               <a

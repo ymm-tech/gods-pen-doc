@@ -1,10 +1,10 @@
 # 项目管理
 
-[码良项目后台](http://godspen.ymm56.com/admin/#/home)是码良编辑器的入口，提供了项目管理、资源管理、数据统计等功能。
+[码良项目后台](https://godspen.ymm56.com/admin/#/home)是码良编辑器的入口，提供了项目管理、资源管理、数据统计等功能。
 
 ## 入口
 
-由[码良项目后台](http://godspen.ymm56.com/admin/#/home)进入，使用邮箱密码登陆系统。
+由[码良项目后台](https://godspen.ymm56.com/admin/#/home)进入，使用邮箱密码登陆系统。
 
 ## 概念
 
