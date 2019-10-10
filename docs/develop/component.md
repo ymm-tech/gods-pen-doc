@@ -18,7 +18,7 @@ npm install gods-pen-cli -g
 
 ```shell
 # 设置为官方组件仓库 godspen.ymm56.com
-gods-pen-config registry http://godspen.ymm56.com
+gods-pen-config registry https://godspen.ymm56.com
 ```
 ## 设置`token`
 
