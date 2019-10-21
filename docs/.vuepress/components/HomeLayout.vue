@@ -18,6 +18,11 @@
                 href="http://godspen.ymm56.com/admin/#/home"
                 class="button button__accent"
               >开始使用</a>
+              <div
+                class="button button__accent home_video" @click='playVideo'
+              >
+                <div>&nbsp</div>
+              </div>
               <a
                 href="https://github.com/ymm-tech/gods-pen"
                 class="button hero__button"
@@ -47,6 +52,7 @@
               >
                 GITEE
               </a>
+              <!-- <div class='home_video'></div> -->
             </div>
           </div>
         </div>
@@ -190,6 +196,12 @@
       })
     },
     methods: {
+      playVideo () {
+        if (!!document.getElementById('imgViewerMask')) {
+          document.getElementById('imgViewer').src = 'https://cos.56qq.com/fis/201910171857414203c0073b34271487.gif'
+          document.getElementById('imgViewerMask').style.display = 'block'
+        }
+      }
     }
   }
 </script>
