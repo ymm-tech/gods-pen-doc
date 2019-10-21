@@ -1623,3 +1623,10 @@ select::-ms-expand {
     transition: none;
   }
 }
+
+.home_video{
+  background-image: url('../images/video.png');
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: center;
+}

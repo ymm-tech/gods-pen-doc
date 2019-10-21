@@ -82,11 +82,39 @@ function integrateBaidutongji () {
   document.body.appendChild(hm)
 }
 
+function imgViewer (router) {
+  function inject () {
+    if (inject.started) return
+    const $page = document.querySelector('.page')
+    if (!$page) return setTimeout(inject, 1000)
+    document.querySelector('.page').onclick = function (e) {
+      if (e.target.nodeName === 'IMG' && !!e.target.src) {
+        document.getElementById('imgViewer').src = e.target.src
+        document.getElementById('imgViewerMask').style.display = 'block'
+      }
+    }
+    inject.started = true
+  }
+  function createImgViewer () {
+    const div = document.createElement('div')
+    div.id = 'imgViewerMask'
+    div.style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); z-index: 32; display:none;"
+    div.innerHTML='<img id="imgViewer" style="position: absolute; margin: auto; top: 0; bottom: 0; left: 0; right: 0; box-shadow: none; max-width: 97%; max-height: 97%;" src=""/>'
+    div.onclick = function () {
+      div.style.display = 'none'
+    }
+    document.body.appendChild(div)
+  }
+  createImgViewer()
+  router.afterEach(inject)
+}
+
 export default ({Vue, options, router}) => {
   if (typeof document == 'undefined') return
   try {
     integrateGitalk(router)
     integrateBaidutongji()
+    imgViewer(router)
   } catch (e) {
     console.error(e.message)
   }
