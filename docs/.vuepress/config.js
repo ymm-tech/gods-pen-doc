@@ -50,6 +50,7 @@ module.exports = {
       '/cookbook/': [
         'introduce',
         'install',
+        'source',
         'manage',
         'workspace',
         'space',
