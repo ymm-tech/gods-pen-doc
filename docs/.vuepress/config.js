@@ -26,12 +26,16 @@ module.exports = {
         text: '使用手册',
         link: '/cookbook/introduce'
       },
+      // {
+      //   text: '视频',
+      //   items: [{
+      //     text: '使用实例',
+      //     link: '/video/cookbook'
+      //   }, /*{text: '开发实例', link: '/video/develop'}*/ ]
+      // },
       {
-        text: '视频',
-        items: [{
-          text: '使用实例',
-          link: '/video/cookbook'
-        }, /*{text: '开发实例', link: '/video/develop'}*/ ]
+        text: '使用视频',
+        link: '/video/cookbook'
       },
       {
         text: '开发',
@@ -46,6 +50,7 @@ module.exports = {
       '/cookbook/': [
         'introduce',
         'install',
+        'source',
         'manage',
         'workspace',
         'space',
@@ -63,6 +68,9 @@ module.exports = {
         'script',
         'component',
       ],
+      '/video/': [
+        'cookbook',
+      ]
     },
   }
 }

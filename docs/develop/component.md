@@ -1,6 +1,6 @@
 # 组件开发
 
-官方已经提供了一些[基本组件](../cookbook/component.html#基础组件)，同时，码良也提供了第三方组件的接入能力
+官方已经提供了一些[基本组件](../cookbook/component.html#基础组件)，这些组件在 [官方组件仓库](https://github.com/godspencomponent) 组里面可以产考。同时码良也提供了第三方组件的接入能力
 
 ## `gods-pen`
 
