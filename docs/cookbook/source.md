@@ -128,7 +128,7 @@ server {
 
   # api 反向代理
   location ^~ /api {
-    proxy_pass http://godspen:7051;
+    proxy_pass http://127.0.0.1:7051;
   }
 }
 ```
