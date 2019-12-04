@@ -21,4 +21,4 @@ yarn docs:build
 yarn docs:deploy
 ```
 
-如无充分了解，请谨慎修改`docs/.vuepress/`下文件
+如无充分了解，请谨慎修改`docs/.vuepress/`下文件 谢谢
