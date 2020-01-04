@@ -14,10 +14,16 @@
 
 ### 必要条件
 
-- linux 系统或其他 linux 发行版，或者 macOS
-- docker
-- docker-compose
+- linux 系统或其他 linux 发行版 [推荐阿里云上购买服务器](https://www.aliyun.com/product/ecs?aly_as=P6zVCnft&source=5176.11533457&userCode=5m3njzh3&type=copy)，或者 macOS 
 - 至少 3GB 内存，10G 可用存储空间 （如不使用 docker 容器提供 es、redis、mysql 全部或部分服务，可适当减少。单个es节点占用约1GB内存，默认启动了两个）
+- docker  
+```
+curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
+```
+- docker-compose [安装教程](https://docs.docker.com/compose/install/)
+
+- 阿里云开通oss服务 [开通地址](https://www.aliyun.com/product/oss?spm=5176.12825654.eofdhaal5.87.ba052c4a8HQU3D&aly_as=ge-cEkgv&userCode=5m3njzh3)
+- 邮件服务 开通smtp服务 [开通教程](https://jingyan.baidu.com/article/6079ad0eb14aaa28fe86db5a.html)
 
 ### 获取代码
 
@@ -32,7 +38,7 @@ git clone https://github.com/ymm-tech/gods-pen-docker.git
 
 项目提供了两个配置文件 config.yaml 和 nginx.conf。
 
-config.yaml 集中了码良所有依赖服务的配置，如 redis、mysql 等。其中 redis、mysql、es 服务由相应 docker 容器提供，保持默认配置即可（也可自行配置相关字段，并在 docker-compose.yaml 修改或移除对应服务）；邮件、对象存储不由 docker 容器提供，必须自行填写对应配置（可自建或使用第三方服务）。
+config.yaml 集中了码良所有依赖服务的配置，如 redis、mysql 等。其中 redis、mysql、es 服务由相应 docker 容器提供，保持默认配置即可（也可自行配置相关字段，并在 docker-compose.yaml 修改或移除对应服务）；[邮件](https://jingyan.baidu.com/article/6079ad0eb14aaa28fe86db5a.html)、[对象存储](https://www.aliyun.com/product/oss?spm=5176.12825654.eofdhaal5.87.ba052c4a8HQU3D&aly_as=ge-cEkgv&userCode=5m3njzh3)不由 docker 容器提供，必须自行填写对应配置（可自建或使用第三方服务）。
 
 nginx.conf 是nginx的配置文件，整合了码良内部的多个服务，是最终交付服务的实际入口。默认包含了最简配置，静态文件服务（含 html5 history 模式的支持，缓存）和api服务的反向代理，如需进行域名绑定等操作，可自行修改该文件进行配置。
 
