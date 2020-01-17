@@ -1,10 +1,12 @@
 # 组件开发
 
-官方已经提供了一些[基本组件](../cookbook/component.html#基础组件)，这些组件在 [官方组件仓库](https://github.com/godspencomponent) 组里面可以产考。同时码良也提供了第三方组件的接入能力
+2020年1月7号开始，官方不提供默认组件，原来的这些组件在 [官方组件仓库](https://github.com/godspencomponent) 组里面，可以自己clone下来。按照下面的教程发布到自己的内部系统中。当然也可以按自己的需求开发和修改。
+
+# 脚手架安装
 
 ## `gods-pen`
 
-`gods-pen` 是基于 `nodejs` 的命令行工具，提供了覆盖组件开发全流程的工具
+`gods-pen` 是基于 `nodejs` 的命令行工具，提供了覆盖组件开发全流程的工具，我们一般通过该命令进行 `配置信息`，`创建模板组件`,`构建发布组件`
 
 ```shell
 npm install gods-pen-cli -g
@@ -14,11 +16,14 @@ npm install gods-pen-cli -g
 
 ## 设置`registry`
 
-码良是一个开源项目，支持私有部署，因此需要设置`registry`指明向哪个组件仓库来提交组件。
+码良是一个开源项目，支持私有部署，当然自己开发的组件也需要部署到你自己的私有服务，因此需要设置`registry`指明向哪个组件仓库来提交组件。
 
 ```shell
 # 设置为官方组件仓库 godspen.ymm56.com
 gods-pen-config registry https://godspen.ymm56.com
+
+# 设置为自己的服务  www.xx.com 可以是域名，可以是ip （该配置配置好后会在publish组件的时候调用 https://www.xx.com/api 下面的接口。）
+gods-pen-config registry https://www.xx.com
 ```
 ## 设置`token`
 
@@ -27,31 +32,52 @@ gods-pen-config registry https://godspen.ymm56.com
 ```shell
 gods-pen-config token DEcTjQRFbiYitFydhC2m5kd8JHieQrsztrbiPaz5DbHk68AWbmMBe7ShXw2ncwp5
 ```
-此设置非必须，也可在发布组件时于命令行交互中填写。
 
 ## 创建组件
+官方的组件当然满足不了公司内部的业务需求。那么你需要自己开发组件。如何开始呢。就从下面通过脚手架创建组件模板开始。
 
-```shell
-gods-pen-create <your-component-name> # gods-pen-create test-com
-```
+    gods-pen create my-component
 
-![](../assets/img/maliang-create.png)
+根据提示输入组件名、描述，选择组件分类
 
-按提示输入相应信息即可。注意，“命名空间”为一个字符串， 用来区别开发者
+![](https://cos.56qq.com/fis/20191024141635872924744dfc05f714.gif)
 
-创建组件时有一个选项“是否创建属性配置组件”，默认为否，如果选择是的话，组件工程内除包含组件本身，还包含一个属性配置组件，可以实现更加灵活的自定义属性设置。
+项目文件结构如下
 
-## 开发/预览组件
+![](https://cos.56qq.com/fis/2019102414231078087b99e28aba694f.png)
 
-```shell
-# cd <component-dir>
-# yarn install
-yarn start
-# or
-npm run dev
-```
+可以看到，这是一个典型的 vue 工程。没错，码良组件本身与普通 vue 组件无异，只是在普通 vue 组件的基础上，我们添加了一些约定字段，使组件能被码良编辑器识别、配置。
 
-进入工程根目录，
+`/src/index.vue` 即为刚才创建的组件。组件开发的主要工作就是针对这个组件进行功能开发。
+
+`/src/example.vue` 提供了一些简单的代码示例和说明。
+
+`preview/` 目录下的文件是供开发预览使用的，最终发布的时候是不会打包此文件夹文件的，必要时可以按需修改其中的代码，比如测试组件传参（props）。
+
+`icon.png` 将作为组件图标随组件发布至组件仓库，您应该将此文件替换为自己的组件图标。
+
+`[README.md](http://readme.md)` 是组件的详细使用说明，支持 markdown，也会随组件发布上传至组件仓库，在码良编辑器中可以查看组件说明。
+
+不知道你有没有注意到创建组件时，最后一步是选择“是否创建属性配置组件“，所谓属性配置组件就是可以在编辑器中使用此自定义组件来对组件的属性进行配置，而不是使用编辑器默认提供的。`editor/` 文件夹下就是属性配置组件，事实上，无论你选择创建此组件与否，这个文件夹都存在，区别仅在于，选择“是“的时候，webpack `entry` 配置会包含`editor/index.vue` 文件，反之不包含，因此，当你发现自己需要一个自定义属性配置组件而此前未选择“是”的时候，在 `webpack.config.js` 中 `entry` 字段下添加 `editor: './editor/index.vue'` 即可。
+
+## 组件开发
+
+码良组件基于 vue ，在对vue 框架有一定了解后就可以轻松开发码良组件了。
+
+![](https://cos.56qq.com/fis/201910241520260100370d63539da553.gif)
+
+上图中，安装了依赖并启动了项目，简单修改组件展示了“hello world”
+
+下图中我们来开发一个简单的卡片组件，包含一张图片，一行文字，图片和文字可配置
+
+![](https://cos.56qq.com/fis/20191024160058241966e327de9c6fbb.gif)
+
+截止目前仍然还是一个普通vue组件的样子，接受两个参数 `img` 和 `line`，如何让编辑器能识别它所需参数并提供合理的输入控件呢，接着看对它的改造
+
+![](https://cos.56qq.com/fis/201910241631176660e70fd763e0fb43.gif)
+
+可以看到，我们为`img` 参数和 `line` 参数都添加了一个 `editor` 字段，并指定了 `editor.type` 和 `editor.label` ，`type`为 “image” 代表了编辑器应该为该参数提供一个图片选择器，`label` 为“图片”表示在编辑器中应将该参数显示为“图片”，更多的 `type` 输入类型请参考[文档](https://godspen.ymm56.com/doc/develop/script.html#%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B1%9E%E6%80%A7)。
+
 
 `/src/index.vue` 即为刚才创建的组件。组件开发的主要工作就是针对这个组件进行功能实现。
 
@@ -253,15 +279,19 @@ package.json内 `style` 字段定义了组件外层包裹节点的默认样式�
 
 合理配置上述字段和文件以后，执行发布
 
-```shell
-# cd <component-dir>
-gods-pen-publish
-# 如果已经成功构建过，可跳过构建过程
-# gods-pen-publish --skip-build
-```
+如果此前没有设置过组件仓库，请先执行设置命令
 
-![](../assets/img/maliang-publish.jpg)
+    # 设置为官方组件仓库 godspen.ymm56.com
+    gods-pen config registry https://godspen.ymm56.com
 
-如果组件已成功构建过，也可以添加参数 `--skip-build` 跳过构建步骤
+执行发布（含自动构建）
 
-组件发布成功过后就可以在编辑器中使用了，如果未出现在组件列表中，请于管理后台查看组件权限是否为私有且编辑器登陆用户是否可见该组件。
+    gods-pen publish -t [access-token]
+
+其中 `access-token` 请在码良管理后台——用户设置获取。
+
+![](https://cos.56qq.com/fis/20191024170057038d8a196e99bd1b07.gif)
+
+这就发布成功了，使用一下吧
+
+![](https://cos.56qq.com/fis/20191024170735966e9db4ee6abcfeb1.gif)
