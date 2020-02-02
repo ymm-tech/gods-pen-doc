@@ -22,7 +22,7 @@ npm install gods-pen-cli -g
 # 设置为官方组件仓库 godspen.ymm56.com
 gods-pen-config registry https://godspen.ymm56.com
 
-# 设置为自己的服务  www.xx.com 可以是域名，可以是ip （该配置配置好后会在publish组件的时候调用 https://www.xx.com/api 下面的接口。）
+# 设置为自己的服务  www.xx.com 可以是域名，可以是ip （该配置配置好后会在publish组件的时候调用 https://www.xx.com/api 下面的接口。`注意这里的域名是你的部署好的码良的访问地址的域名`）
 gods-pen-config registry https://www.xx.com
 ```
 ## 设置`token`
