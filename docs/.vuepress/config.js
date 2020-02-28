@@ -26,6 +26,10 @@ module.exports = {
         text: '使用手册',
         link: '/cookbook/introduce'
       },
+      {
+        text: '组件商城',
+        link: 'https://godspen.ymm56.com/shop/'
+      },
       // {
       //   text: '视频',
       //   items: [{
