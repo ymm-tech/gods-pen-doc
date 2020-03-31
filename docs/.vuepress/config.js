@@ -15,7 +15,7 @@ module.exports = {
   host: getIPAdress(),
   title: '码良',
   base: process.env.NODE_ENV === 'production' ? '/doc/' : '/',
-  description: '码良,在线网页制作平台,网页制作,傻瓜建站系统',
+  description: '码良,开源可视化搭建平台,免费可视化搭建平台,在线网页制作平台,网页制作,傻瓜建站系统',
   themeConfig: {
     logo: '/logo.png',
     nav: [{
