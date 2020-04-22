@@ -295,3 +295,64 @@ package.json内 `style` 字段定义了组件外层包裹节点的默认样式�
 这就发布成功了，使用一下吧
 
 ![](https://cos.56qq.com/fis/20191024170735966e9db4ee6abcfeb1.gif)
+
+## 特别说明 布局组件的开发
+
+在码良项目的开发初期，我们曾纠结于到底是选用组件树模式（树状结构）还是大饼模式（平级结构）来组织页面结构，就实现难度来说大饼模式更为简单，但是最终码良还是采用了复杂很多的树状结构。树状结构给页面带来了更多灵活性和逻辑性，码良很多功能特性即建立于树状结构的页面结构之上，如[组件封装](../cookbook/component.html#组件封装)。
+
+但是，在树状结构的实现过程中，没有明确区别**布局组件**（广义上，即可以添加子组件的组件）和一般组件，形成了现在所有组件都可以添加子组件的局面，虽然绝大部分情况下不会造成功能上的问题（常常可以看到运营同事往图片组件下添加按钮），但是在明确需要限制子组件数量、控制子组件样式和功能等情况时，这个缺陷造成了相当的困难。
+
+基于前述情况，我们重新思考了布局组件（广义上，即可以添加子组件的组件）的实现，在不改变现有页面组织模式的情况下（没错，你仍然可以给图片组件添加荒唐的子组件），通过借助 vue 原生的 [slot 插槽](https://cn.vuejs.org/v2/guide/components-slots.html) 并为组件添加 `slots` option 来显式定义对子组件的控制规则。
+
+### slot 属性定义规则
+
+如下代码便通过`slots` option 定义了子组件规则，
+
+```js
+<template>
+  <div class="component columns">
+    <div :key="i" class="columns-item" v-for="(n,i) in 4">
+      <slot :name="'slot'+ i" >
+        <div class="slot-placeholder"></div>
+      </slot>
+    </div>
+  </div>
+</template>
+
+export default {
+  data () { return {} },
+  props: {
+    fill: {
+      type: Boolean,
+      editor: {
+        type: 'boolean',
+        label: '填充',
+        desc: '强制设定子组件的宽高为100%'
+      },
+      default: true
+    }
+  },
+  mounted () {},
+  // 我在这里
+  slots: (props = {}) => {
+    if (!props.fill) return true
+    return {style: { width: '100%', height: '100%' }}
+  },
+  methods: {}
+}
+
+```
+
+似懂非懂？接着看看 slots 的定义规则吧，
+
+| 数据类型 | 取值示例 | 组件 template | 子组件 |
+|-|-|-|-|
+| undefined | `undefined` | 无 slot 插槽 | 不定义 slots option，不将子组件置入插槽 |
+| bool | `false` | 无 slot 插槽 | 不将子组件置入插槽 |
+| bool | `true` | 有一个或多个具名 slot 插槽，name 分别为 'slot0'、'slot1'、'slot2'... | 子组件依次插入 'slot0'、'slot1'、'slot2'... |
+| object | {style: { width: '100%', height: '100%' }} | 有一个或多个具名 slot 插槽，name 分别为 'slot0'、'slot1'、'slot2'...，并且为所有子组件设置样式 `width: '100%'; height: '100%'` | 子组件依次插入 'slot0'、'slot1'、'slot2'..., 所有插槽子组件获得样式 `width: '100%'; height: '100%'` |
+| array | `[ 'name1', 'name2' ]` | 有两个具名 slot 插槽，name 分别为 'name1'、'name2'| 子组件依次插入 'name1'、'name2' |
+| array | `[{ name: 'name1', style: {width: '100%'}}, 'name2']` | 有两个具名 slot 插槽，name 分别为 'name1'、'name2'，并为 'name1' 插槽子组件设定样式 `width: '100%'` |子组件依次插入 'name1'、'name2', name1 插槽子组件获得样式 `width: '100%'` |
+| function | `function (props) { // 入参为组件的属性（props）值，返回值同前述示例}` | | 取决于函数返回值 |
+
+到这里，前面的组件 slots 示例代码就不难懂了。组件模板定义了 4 个具名 slot 插槽，名称分别为 'slot0'、'slot1'、'slot2'、'slot4'。脚本部分 ，`slots` option 被设置为一个函数，当入参属性 `fill` 为真的时候，函数返回值为 `{style: { width: '100%', height: '100%' }}`, 即子组件依次插入 'slot0'、'slot1'、'slot2'..., 所有插槽子组件获得样式 `width: '100%'; height: '100%'`；当入参属性 `fill` 为假的时候，函数返回值为 `true` ，仅将子组件置入对应插槽，不做样式控制。这样就实现了一个可以（动态）控制子组件的行为的布局组件。
