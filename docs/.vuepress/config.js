@@ -61,6 +61,7 @@ module.exports = {
         'space',
         'template',
         'component',
+        'canvas',
         'comtree',
         'attr',
         'style',
