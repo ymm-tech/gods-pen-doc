@@ -266,18 +266,37 @@ return {
 
 ```
 
+
 ### 获取其他组件 `getComponent`
 
-注意，限于目前的组件树组织方式，每个组件外层实际还存在一层容器组件，因此获取组件的方法提供者和获取到的组件其实都是这种容器组件。因此暂时我们需要如下这样操作，
+
+![-w1409](https://ymm-maliang.oss-cn-hangzhou.aliyuncs.com/techfaceblog/2020/07/03/15937447344584.jpg)
+
+如上图所示整个页面都是一个个节点递归组成，每个节点都先有一个空的容器占位，我们叫他`包装容器`，组件配置的style属性都会在这个容器上，决定这容器的位置大小等信息。组件配置的props信息会透传到容器包裹的真正的`组件`里面提供给组件对应的属性值。这里我们要了解如下几个要点：
+
+1. 每个组件包括包装容器，真正的组件其实是在这个包装容器里面。
+2. 包装容器接受节点的style控制大小以及动画，组件节点接受props，script，进行组件功能的初始化和扩展
+3. 组件如果希望在逻辑中修改props传入的值只能通过获取该元素的包装容器，并通过包装容器里面的nodeInfo.props.xxx 进行修改
+4. 我们的逻辑都是在组件，或者在组件扩展的脚本里面。所以我们如果要在逻辑中获取包装容器可以通过 this.$parent 获取包装容器
+5. 我们可以通过 `this.$parent.getComponent('xxx')` 获取xxx的包装容器， 可以通过  `this.$parent.getComponent('xxx',true)` 获取包装容器里面的组件
 
 ```js
 
 return {
   mounted: function () {
     var anotherComponentId = 'comxxx'
-    var anotherComponent = this.$parent // getComponent 方法提供者
-                               .getComponent(anotherComponentId)
-                               .$refs[anotherComponentId] // 实际组件实例
+    // 获取包装容器 comxxx
+    var anotherWrapComponent = this.$parent.getComponent(anotherComponentId)
+    // 修改该节点的nodeInfo等信息
+    anotherWrapComponent.nodeInfo.props.xxx = 'xxx'
+    // 隐藏元素
+    anotherWrapComponent.nodeInfo.visible = false
+
+    // 修改当前节点传入的props值
+    this.$praent.nodeInfo.props.xxx = 'xxx'
+
+    // 获取 组件comxxx 对象
+    var anotherWrapComponent = this.$parent.getComponent(anotherComponentId,true)
   }
 }
 
